@@ -2,70 +2,61 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jagriti ❤️ Ajeet</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Comic Sans MS', cursive;
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  text-align: center;
   color: white;
-  overflow: hidden;
-}
-
-/* Mobile only */
-@media (min-width: 768px) {
-  body::before {
-    content: "📱 Please open on mobile";
-    position: fixed;
-    inset: 0;
-    background: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    z-index: 9999;
-  }
+  text-align: center;
+  overflow-x: hidden;
 }
 
 .container {
+  min-height: 100vh;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
-  margin-top: 40px;
-  font-size: 2.4rem;
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  margin-bottom: 10px;
 }
 
 .date {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 4vw, 1.3rem);
   margin-bottom: 30px;
 }
 
 button {
-  padding: 15px 30px;
-  font-size: 1.2rem;
+  padding: 14px 28px;
+  font-size: 1.1rem;
   border-radius: 30px;
   border: none;
   background: white;
   color: #ff4f81;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
-.card {
+.surprise {
   display: none;
-  margin-top: 25px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 20px;
-  padding: 20px;
+  margin-top: 20px;
+  animation: fadeIn 1.2s ease-in-out forwards;
 }
 
-.card img {
+.surprise img {
   width: 100%;
   max-width: 280px;
   border-radius: 20px;
@@ -75,18 +66,24 @@ button {
 
 .msg {
   margin-top: 15px;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 4vw, 1.2rem);
   line-height: 1.6;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating hearts */
 .heart {
   position: fixed;
   bottom: -10px;
   font-size: 18px;
-  animation: float 6s linear infinite;
+  animation: floatUp 6s linear infinite;
 }
 
-@keyframes float {
+@keyframes floatUp {
   0% { transform: translateY(0); opacity: 1; }
   100% { transform: translateY(-100vh); opacity: 0; }
 }
@@ -96,20 +93,26 @@ button {
 <body>
 
 <div class="container">
+
   <h1>Jagriti ❤️ Ajeet</h1>
   <div class="date">Happy Anniversary<br>6th February 💍</div>
 
-  <button onclick="showSurprise()">Tap for Surprise 💝</button>
+  <!-- BUTTON -->
+  <button id="surpriseBtn" onclick="showSurprise()">
+    Tap for Surprise 💝
+  </button>
 
-  <div class="card" id="card">
-    <img src="love.jpg" alt="Our Love">
+  <!-- HIDDEN CONTENT -->
+  <div class="surprise" id="surprise">
+    <img src="lovw.JPG" alt="Our Love">
     <div class="msg">
-      To my forever person 💕<br><br>
-      Every smile, every fight, every moment —
-      I’d choose you again and again.<br><br>
-      Happy Anniversary, my love 🥹❤️
+      To my forever person 🥹❤️<br><br>
+      Every moment with you is my favorite story.
+      I’d still choose you in every lifetime.<br><br>
+      Happy Anniversary, my love 💕
     </div>
   </div>
+
 </div>
 
 <!-- Background Music -->
@@ -119,8 +122,16 @@ button {
 
 <script>
 function showSurprise() {
-  document.getElementById("card").style.display = "block";
+  // Hide button
+  document.getElementById("surpriseBtn").style.display = "none";
+
+  // Show content
+  document.getElementById("surprise").style.display = "block";
+
+  // Play music
   document.getElementById("song").play();
+
+  // Start hearts
   setInterval(createHeart, 300);
 }
 
@@ -129,6 +140,7 @@ function createHeart() {
   heart.className = "heart";
   heart.innerHTML = "❤️";
   heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 6000);
 }
@@ -136,4 +148,3 @@ function createHeart() {
 
 </body>
 </html>
-
