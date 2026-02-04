@@ -21,56 +21,52 @@ body {
   background: linear-gradient(135deg, var(--pink1), var(--pink2));
   color: white;
   text-align: center;
-  overflow-x: hidden;
-  overflow-y: auto;   /* 👈 ADD THIS */
+  overflow: hidden; /* 👈 NO SCROLL */
 }
 
 .container {
-  min-height: 100vh;
-  padding: 20px 16px 40px; /* 👈 extra bottom space */
+  height: 100vh;
+  padding: 14px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* 👈 spreads content */
   align-items: center;
 }
 
 h1 {
-  font-size: clamp(1.8rem, 6vw, 2.5rem);
-  margin-bottom: 6px;
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  margin: 6px 0;
 }
 
 .date {
-  font-size: clamp(1rem, 4vw, 1.3rem);
-  margin-bottom: 28px;
+  font-size: clamp(0.9rem, 4vw, 1.1rem);
+  margin-bottom: 10px;
+}
+
+.msg {
+  font-size: clamp(0.85rem, 3.8vw, 1.05rem);
+  line-height: 1.4;
+  margin: 8px 0 14px;
 }
 
 button {
-  padding: 14px 28px;
-  font-size: clamp(1rem, 4vw, 1.2rem);
+  padding: 12px 24px;
+  font-size: clamp(0.95rem, 4vw, 1.1rem);
   border-radius: 30px;
-  border: none;
-  background: #fff;
-  color: #ff4f81;
-  font-weight: 700;
 }
 
 #surprise {
   display: none;
-  margin-top: 20px;
   width: 100%;
-  max-width: 360px;
-  animation: fadeIn 1s ease forwards;
+  max-width: 280px; /* 👈 smaller */
 }
 
 #surprise img {
   width: 100%;
-  border-radius: 18px;
-  border: 4px solid white;
-}
-
-.msg {
-  margin-top: 14px;
-  font-size: clamp(1rem, 4vw, 1.2rem);
-  line-height: 1.6;
+  max-height: 38vh; /* 👈 never exceed screen */
+  object-fit: cover;
+  border-radius: 16px;
+  border: 3px solid white;
 }
 
 @keyframes fadeIn {
@@ -154,4 +150,5 @@ function createHeart() {
 
 </body>
 </html>
+
 
