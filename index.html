@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Jagriti ❤️ Ajeet</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+/* Mobile only */
+@media (min-width: 768px) {
+  body::before {
+    content: "📱 Please open on mobile";
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    z-index: 9999;
+  }
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  margin-top: 40px;
+  font-size: 2.4rem;
+}
+
+.date {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: none;
+  background: white;
+  color: #ff4f81;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.card {
+  display: none;
+  margin-top: 25px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.card img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 20px;
+  border: 4px solid white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.msg {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.heart {
+  position: fixed;
+  bottom: -10px;
+  font-size: 18px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Jagriti ❤️ Ajeet</h1>
+  <div class="date">Happy Anniversary<br>6th February 💍</div>
+
+  <button onclick="showSurprise()">Tap for Surprise 💝</button>
+
+  <div class="card" id="card">
+    <img src="photo.jpg" alt="Our Love">
+    <div class="msg">
+      To my forever person 💕<br><br>
+      Every smile, every fight, every moment —
+      I’d choose you again and again.<br><br>
+      Happy Anniversary, my love 🥹❤️
+    </div>
+  </div>
+</div>
+
+<!-- Background Music -->
+<audio id="song" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/30/audio_0d7c0c9c0a.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function showSurprise() {
+  document.getElementById("card").style.display = "block";
+  document.getElementById("song").play();
+  setInterval(createHeart, 300);
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+</script>
+
+</body>
+</html>
