@@ -6,14 +6,19 @@
 <title>Jagriti ❤️ Ajeet</title>
 
 <style>
+:root {
+  --pink1: #ff758c;
+  --pink2: #ff7eb3;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Comic Sans MS', cursive;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: linear-gradient(135deg, var(--pink1), var(--pink2));
   color: white;
   text-align: center;
   overflow-x: hidden;
@@ -21,7 +26,7 @@ body {
 
 .container {
   min-height: 100vh;
-  padding: 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,42 +35,40 @@ body {
 
 h1 {
   font-size: clamp(1.8rem, 6vw, 2.5rem);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .date {
   font-size: clamp(1rem, 4vw, 1.3rem);
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 button {
   padding: 14px 28px;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 4vw, 1.2rem);
   border-radius: 30px;
   border: none;
-  background: white;
+  background: #fff;
   color: #ff4f81;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  font-weight: 700;
 }
 
-.surprise {
+#surprise {
   display: none;
   margin-top: 20px;
-  animation: fadeIn 1.2s ease-in-out forwards;
+  width: 100%;
+  max-width: 360px;
+  animation: fadeIn 1s ease forwards;
 }
 
-.surprise img {
+#surprise img {
   width: 100%;
-  max-width: 280px;
-  border-radius: 20px;
+  border-radius: 18px;
   border: 4px solid white;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .msg {
-  margin-top: 15px;
+  margin-top: 14px;
   font-size: clamp(1rem, 4vw, 1.2rem);
   line-height: 1.6;
 }
@@ -81,6 +84,7 @@ button {
   bottom: -10px;
   font-size: 18px;
   animation: floatUp 6s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes floatUp {
@@ -93,47 +97,40 @@ button {
 <body>
 
 <div class="container">
-
   <h1>Jagriti ❤️ Ajeet</h1>
-  <div class="date">Happy Anniversary<br>6th February 💍</div>
+  <div class="date">Happy 3rd Anniversary💍</div>
 
-  <!-- BUTTON -->
-  <button id="surpriseBtn" onclick="showSurprise()">
-    Tap for Surprise 💝
-  </button>
+  <button id="btn">Tap for Surprise 💝</button>
 
-  <!-- HIDDEN CONTENT -->
-  <div class="surprise" id="surprise">
-    <img src="lovw.JPG" alt="Our Love">
+  <div id="surprise">
+    <img src="love.JPG" alt="Our Love">
     <div class="msg">
-      To my forever person 🥹❤️<br><br>
-      Every moment with you is my favorite story.
-      I’d still choose you in every lifetime.<br><br>
-      Happy Anniversary, my love 💕
+      To my forever person ❤️<br><br>
+      Every day with you feels like home.
+      I’d choose you again in every lifetime.<br><br>
+      Happy Anniversary 💕
     </div>
   </div>
-
 </div>
 
-<!-- Background Music -->
 <audio id="song" loop>
   <source src="https://cdn.pixabay.com/audio/2023/03/30/audio_0d7c0c9c0a.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function showSurprise() {
-  // Hide button
-  document.getElementById("surpriseBtn").style.display = "none";
+const btn = document.getElementById("btn");
+const surprise = document.getElementById("surprise");
+const song = document.getElementById("song");
 
-  // Show content
-  document.getElementById("surprise").style.display = "block";
+let heartInterval;
 
-  // Play music
-  document.getElementById("song").play();
+btn.onclick = () => {
+  btn.style.display = "none";
+  surprise.style.display = "block";
+  song.play();
 
-  // Start hearts
-  setInterval(createHeart, 300);
-}
+  heartInterval = setInterval(createHeart, 300);
+};
 
 function createHeart() {
   const heart = document.createElement("div");
@@ -142,7 +139,10 @@ function createHeart() {
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.fontSize = (Math.random() * 20 + 10) + "px";
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
 }
 </script>
 
