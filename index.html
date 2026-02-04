@@ -62,10 +62,10 @@ button {
 
 #surprise img {
   width: 100%;
-  max-height: 42vh; /* key fix */
+  max-height: 42vh;
   object-fit: contain;
-  border-radius: 18px;
-  border: 4px solid white;
+  border-radius: 14px;
+  border: clamp(1.5px, 0.6vw, 3px) solid white; /* 👈 responsive border */
 }
 
 .msg {
@@ -140,3 +140,4 @@ function createHeart() {
 
 </body>
 </html>
+
